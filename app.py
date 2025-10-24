@@ -81,12 +81,12 @@ def search():
 def results(starname, planetname):
 
     if starname != "NoStar":
-        stars = planet.findstars_byname(starname)[0]
+        stars = planet.findstarsname_withname(starname)[0]
     else:
         stars = []
 
     if planetname != "NoPlanet":
-        planets = planet.findplanets_byname(planetname)[0]
+        planets = planet.findplanetsname_withname(planetname)[0]
     else:
         planets = []
 
