@@ -73,7 +73,7 @@
     </p>
       <p>
       Löydetty vuonna: <br />
-      <input type="text" name="planetdate" />
+      <input type="text" name="planetdate" value="1900"/>
     </p>
 
            Löytömetodi: <br />
@@ -81,7 +81,7 @@
 
 
 
-    <input type = "radio" name="planetmethod" value={{method}}> {{method.name}}  <br>
+    <input type = "radio" name="planetmethod" value="{{method.name}}" checked> {{method.name}}  <br>
 
 
       {% endfor %}
