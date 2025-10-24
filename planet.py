@@ -115,3 +115,10 @@ def findstars_byname(query):
     sql = "SELECT id from star WHERE name LIKE ?"
     return db.query(sql, ["%" + query + "%"])
 
+def findplanetsname_withname(query):
+    sql = "SELECT name from planet WHERE name LIKE ?"
+    return db.query(sql, ["%" + query + "%"])
+
+def findstarsname_withname(query):
+    sql = "SELECT name from star WHERE name LIKE ?"
+    return db.query(sql, ["%" + query + "%"])
