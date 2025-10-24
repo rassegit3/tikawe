@@ -1,7 +1,6 @@
 import sqlite3
 from flask import Flask, redirect, url_for
-import secrets
-from flask import redirect, render_template, request, session, abort
+from flask import redirect, render_template, request, session
 from werkzeug.security import check_password_hash, generate_password_hash
 import config
 import db
@@ -43,7 +42,6 @@ def new():
 
 @app.route("/search", methods = ["POST","GET"])
 def search():
-    check_csrf()
     starname = request.args.get("starname")
     planetname = request.args.get("planetname")
     planet_id = 0
@@ -116,8 +114,6 @@ def search_planet():
 
 @app.route("/send", methods=["POST"])
 def send():
-    check_csrf()
-
     content = request.form["content"]
     db.execute("INSERT INTO messages (content) VALUES (?)", [content])
     return redirect("/")
@@ -161,7 +157,6 @@ def login():
         if check_password_hash(password_hash, password):
             session["user_id"] = user_id
             session["username"] = username
-            session["csrf_token"] = secrets.token_hex(16)
             return redirect("/")
         else:
             return "VIRHE: väärä tunnus tai salasana"
@@ -179,8 +174,6 @@ def modify_star():
 
 @app.route("/create_star", methods=["GET", "POST"])
 def create_star():
-    check_csrf()
-
     star_name = request.form["starname"]
     star_content = request.form["starcontent"]
     user_id = session["user_id"]
@@ -190,8 +183,6 @@ def create_star():
 
 @app.route("/modify", methods=["GET","POST"])
 def modify():
-    check_(csrf)
-
     types = db.query("SELECT name FROM type")
     stars = db.query("SELECT name FROM star")
     methods = db.query("SELECT name FROM method")
@@ -201,8 +192,6 @@ def modify():
 
 @app.route("/create_planet", methods=["GET", "POST"])
 def create_planet():
-    check_csrf()
-
     planet_name = request.form["planetname"]
     planet_content = request.form["planetcontent"]
     planet_types = request.form.getlist("planettypes[]")
@@ -278,6 +267,4 @@ def removestar(star_id):
     return render_template("ownpage.html", stars=stars, planets=planets)
 
 
-def check_csrf():
-    if request.form["csrf_token"] != session["csrf_token"]:
-        abort(403)
+
