@@ -28,8 +28,9 @@ def show_planet(planet_id):
     star_id = int(star_id)
     star  = planet.getstarnamefromid(star_id)
     method_id = planet.getmethodforplanet(planet_id)["method"]
-    method_id = int(method_id)
-    method = planet.getmethodname(method_id)["name"]
+    """ method_id = int(method_id) """
+    """ method = planet.getmethodname(method_id)["name"] """
+    method = method_id
     types = planet.get_types(planet_id)
 
 
@@ -81,12 +82,12 @@ def search():
 def results(starname, planetname):
 
     if starname != "NoStar":
-        stars = planet.findstarsname_withname(starname)[0]
+        stars = planet.findstars_byname(starname)[0]
     else:
         stars = []
 
     if planetname != "NoPlanet":
-        planets = planet.findplanetsname_withname(planetname)[0]
+        planets = planet.findplanets_byname(planetname)[0]
     else:
         planets = []
 
@@ -222,7 +223,11 @@ def create_planet():
     sql = ("INSERT INTO planet_star (planet_id, star_id) VALUES (?,?)")
     db.execute(sql, [planet_id, star_id])
 
-
+    sql = ("""SELECT id FROM method WHERE name = ?""")
+    result = db.query(sql, [planet_method])[0]
+    method_id = int(result[0])
+    sql = ("INSERT INTO planet_method (planet_id, method_id) VALUES (?,?)")
+    db.execute(sql, [planet_id, method_id])
 
 
 
