@@ -195,7 +195,7 @@ def modify():
 def create_planet():
     planet_name = request.form["planetname"]
     planet_content = request.form["planetcontent"]
-    planet_types = request.form.getlist("planettypes")
+    planet_types = request.form.getlist("planettypes[]")
     print(planet_types)
     planet_star = request.form["planetstar"]
     planet_date = request.form["planetdate"]
@@ -214,8 +214,8 @@ def create_planet():
         sql = ("""SELECT id FROM type WHERE name = ?""")
         result = db.query(sql, [item])
         planet_type_id = int(result[0])
-        sql = ("INSERT INTO planet_type (planet_id, star_id) VALUES (?,?)")
-        db.execute(sql, [planet_type_id, planet_id])
+        sql = ("INSERT INTO planet_type (planet_id, type_id) VALUES (?,?)")
+        db.execute(sql, [planet_id, planet_type_id])
 
 
     sql = ("""SELECT id FROM star WHERE name = ?""")
