@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -10,40 +9,41 @@
 
 <body>
 
-      <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/main.css">
 
 
-    <div class="header">
-        <h1>Tietokanta</h1>
-    </div>
-    <div class = "nav">
-       <nav>
+  <div class="header">
+    <h1>Tietokanta</h1>
+  </div>
+  <div class="nav">
+    <nav>
       <ul>
         <li><a href="/">Etusivu</a>
         <li><a href="/search">Haku</a></li>
         <li><a href="/register">Luo tunnus</a></li>
         {% if session.username %}
-          <li><a href="/modify_star">Lisää tähtiä</a></li>
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
 
         <li><a href="/ownpage">Omat sivut</a></li>
+        <li><a href="/planets">Kaikki kohteet</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
         {% else %}
         <li><a href="/login">Kirjaudu sisään</a></li>
         {% endif %}
       </ul>
     </nav>
-    </div>
+  </div>
 
 
-       <div class ="content">
+  <div class="content">
 
-           Tervetuloa planeettatietokantaan!
+    Tervetuloa planeettatietokantaan!
 
 
 
-       </div>
+  </div>
 
 </body>
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -10,71 +9,72 @@
 
 <body>
 
-      <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/main.css">
 
 
-    <div class="header">
-        <h1>{{planet.name}}</h1>
-    </div>
-    <div class = "nav">
-       <nav>
+  <div class="header">
+    <h1>{{planet.name}}</h1>
+  </div>
+  <div class="nav">
+    <nav>
       <ul>
         <li><a href="/">Etusivu</a>
         <li><a href="/search">Haku</a></li>
         <li><a href="/register">Luo tunnus</a></li>
         {% if session.username %}
-          <li><a href="/modify_star">Lisää tähtiä</a></li>
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
 
         <li><a href="/ownpage">Omat sivut</a></li>
+        <li><a href="/planets">Kaikki kohteet</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
         {% else %}
         <li><a href="/login">Kirjaudu sisään</a></li>
         {% endif %}
       </ul>
     </nav>
-    </div>
+  </div>
 
 
-       <div class ="content">
+  <div class="content">
 
-           <br>
+    <br>
 
-           Tähti:
+    Tähti:
 
-           {{star.name}}
+    {{star.name}}
 
-            <br>
-           Löytötapa:
+    <br>
+    Löytötapa:
 
-           {{method}}
+    {{method}}
 
-           <br>
+    <br>
 
-           Tyypit:
+    Tyypit:
 
-           <br>
+    <br>
 
-            {% for item in types %}
+    {% for item in types %}
 
-           {{item}}
+    {{item}}
 
-           {%endfor%}
+    {%endfor%}
 
-           <br>
-
-
-            {% if planet.user_id == session.user_id %}
-             <p>
-                 <a href="/remove/{{ planet.id }}">Poista</a>
-             </p>
-            {% endif %}
-            <br>
+    <br>
 
 
+    {% if planet.user_id == session.user_id %}
+    <p>
+      <a href="/remove/{{ planet.id }}">Poista</a>
+    </p>
+    {% endif %}
+    <br>
 
-       </div>
+
+
+  </div>
 
 </body>
 

@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Title</title>
 </head>
+
 <body>
 
 
-      <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/main.css">
 
 
-    <div class="header">
-        <h1>Tietokanta</h1>
-    </div>
-    <div class = "nav">
-       <nav>
+  <div class="header">
+    <h1>Tietokanta</h1>
+  </div>
+  <div class="nav">
+    <nav>
       <ul>
         <li><a href="/">Etusivu</a></li>
         <li><a href="/search">Haku</a></li>
         <li><a href="/register">Luo tunnus</a></li>
         {% if session.username %}
-                    <li><a href="/modify_star">Lisää tähtiä</a></li>
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
         <li><a href="/ownpage">Omat sivut</a></li>
+        <li><a href="/planets">Kaikki kohteet</a></li>
         {% else %}
         <li><a href="/login">Kirjaudu sisään</a></li>
         {% endif %}
       </ul>
     </nav>
-    </div>
-    <br>
+  </div>
+  <br>
 
-      Tähdet:
-
-
-
-    {% for item in stars %}
+  Tähdet:
 
 
-      <li><a href="/star/{{ item }}">{{item}}</a></li>
-      <br>
+
+  {% for item in stars %}
 
 
-    {%endfor%}
-
-      <br>
-
-      Planeetat:
-
-    {% for item in planets %}
+  <li><a href="/star/{{ item }}">{{item}}</a></li>
+  <br>
 
 
-      <li><a href="/planet/{{ item }}">{{item}}</a></li>
+  {%endfor%}
 
-      <br>
+  <br>
 
-    {%endfor%}
+  Planeetat:
+
+  {% for item in planets %}
+
+
+  <li><a href="/planet/{{ item }}">{{item}}</a></li>
+
+  <br>
+
+  {%endfor%}
 
 </body>
 

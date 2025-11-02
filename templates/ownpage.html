@@ -9,81 +9,81 @@
 
 <body>
 
-      <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/main.css">
 
 
-    <div class="header">
-        <h1>Omat sivut</h1>
-    </div>
-    <div class = "nav">
-       <nav>
+  <div class="header">
+    <h1>Omat sivut</h1>
+  </div>
+  <div class="nav">
+    <nav>
       <ul>
         <li><a href="/">Etusivu</a>
 
         <li><a href="/search">Haku</a></li>
         <li><a href="/register">Luo tunnus</a></li>
         {% if session.username %}
-          <li><a href="/modify_star">Lisää tähtiä</a></li>
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
 
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
 
         <li><a href="/ownpage">Omat sivut</a></li>
-
+        <li><a href="/planets">Kaikki kohteet</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
         {% else %}
         <li><a href="/login">Kirjaudu sisään</a></li>
         {% endif %}
       </ul>
     </nav>
-    </div>
+  </div>
 
 
-       <div class ="content">
-Planeetat:
+  <div class="content">
+    Planeetat:
 
-             {% for item in planets %}
+    {% for item in planets %}
 
-           {% if item.user_id == session.user_id %}
+    {% if item.user_id == session.user_id %}
 
 
-      <li><a href="/planet/{{ item.id }}">{{item.name}}</a></li>
-      <br>
-           <p>
-                 <a href="/edit/{{ item.id }}">Muokkaa</a>
-                 <a href="/removeplanet/{{item.id}}">Poista</a>
-                 
+    <li><a href="/planet/{{ item.id }}">{{item.name}}</a></li>
+    <br>
+    <p>
+      <a href="/edit/{{ item.id }}">Muokkaa</a>
+      <a href="/removeplanet/{{item.id}}">Poista</a>
 
-             </p>
 
-           {%endif%}
+    </p>
+
+    {%endif%}
 
     {%endfor%}
 
-      <br>
+    <br>
 
-      Tähdet:
+    Tähdet:
 
     {% for item in stars %}
 
-                       {% if item.user_id == session.user_id %}
+    {% if item.user_id == session.user_id %}
 
 
-      <li><a href="/star/{{ item.id }}">{{item.name}}</a></li>
-           <p>
-                 <a href="/edit/{{ item.id }}">Muokkaa</a>
-                 <a href="/removestar/{{ item.id }}">Poista</a>
-             </p>
+    <li><a href="/star/{{ item.id }}">{{item.name}}</a></li>
+    <p>
+      <a href="/edit/{{ item.id }}">Muokkaa</a>
+      <a href="/removestar/{{ item.id }}">Poista</a>
+    </p>
 
-      <br>
-           {%endif%}
+    <br>
+    {%endif%}
 
     {%endfor%}
 
 
 
 
-       </div>
+  </div>
 
 </body>
 

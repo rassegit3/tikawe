@@ -2,18 +2,18 @@
 <html>
 
 <head>
-        <link rel="stylesheet" href="/static/main.css">
+  <link rel="stylesheet" href="/static/main.css">
 
 </head>
 
 <body>
 
   <div class="header">
-        <h1>Rekisteröityminen</h1>
-    </div>
+    <h1>Rekisteröityminen</h1>
+  </div>
 
-<div class = "nav">
-       <nav>
+  <div class="nav">
+    <nav>
       <ul>
         <li><a href="/">Etusivu</a></li>
         <li><a href="/search">Haku</a></li>
@@ -21,10 +21,11 @@
         {% if session.username %}
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
-                              <li><a href="/modify_star">Lisää tähtiä</a></li>
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
 
 
         <li><a href="/ownpage">Omat sivut</a></li>
+        <li><a href="/planets">Kaikki kohteet</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
 
         {% else %}
@@ -32,7 +33,7 @@
         {% endif %}
       </ul>
     </nav>
-    </div>
+  </div>
 
   <form action="/register" method="post">
     <p>
