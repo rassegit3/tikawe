@@ -1,19 +1,74 @@
+<!DOCTYPE html>
+<html>
 
 
-{% block title %}Planeetat{% endblock %}
+<head>
+  <title>Keskustelu</title>
 
-{% block content %}
-<h2>Löydetyt planeetat</h2>
+</head>
+
+<body>
+
+  <link rel="stylesheet" href="/static/main.css">
+
+
+  <div class="header">
+    <h1>Tietokanta</h1>
+  </div>
+  <div class="nav">
+    <nav>
+      <ul>
+        <li><a href="/">Etusivu</a></li>
+        <li><a href="/search">Haku</a></li>
+        <li><a href="/register">Luo tunnus</a></li>
+        {% if session.username %}
+        <li><a href="/modify_star">Lisää tähtiä</a></li>
+
+        <li><a href="/modify">Muokkaa planeettoja</a></li>
+        <li><a href="/logout">Kirjaudu ulos</a></li>
+        <li><a href="/ownpage">Omat sivut</a></li>
+        <li><a href="/planets">Kaikki kohteet</a></li>
+        {% else %}
+        <li><a href="/login">Kirjaudu sisään</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
 
 
 
-{% if query %}
-<h3>Tulokset</h3>
+  <div class="content">
+    <p>
 
-<ul>
-  {% for item in results %}
-  <li><a href="/item/{{ item.id }}">{{ item.title }}</a></li>
-  {% endfor %}
-</ul>
-{% endif %}
-{% endblock %}
+
+      Tähdet:
+    <ul>
+      {% for item in stars %}
+      <li><a href="/star/{{ item.id }}">{{ item.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+
+    Planeetat:
+    <ul>
+      {% for item in planets %}
+      <li><a href="/planet/{{ item.id }}">{{ item.name }}</a></li>
+      {% endfor %}
+    </ul>
+
+
+
+
+
+
+    </p>
+
+
+
+
+
+  </div>
+
+</body>
+
+</html>
