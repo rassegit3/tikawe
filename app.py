@@ -96,7 +96,7 @@ def results(starname, planetname):
     return render_template("results.html",planets=planets,stars=stars)
 
 
-'''
+"""
 @app.route("/search_star")
 def search_star():
     query = request.args.get("query")
@@ -111,7 +111,7 @@ def search_planet():
     if query:
         results = items
     return render_template("planets.html", query= query, results=results)
-'''
+"""
 
 @app.route("/send", methods=["POST"])
 def send():
@@ -195,7 +195,8 @@ def modify():
 def create_planet():
     planet_name = request.form["planetname"]
     planet_content = request.form["planetcontent"]
-    planet_types = request.form.getlist("planettypes[]")
+    planet_types = request.form.getlist("planettypes")
+    print(planet_types)
     planet_star = request.form["planetstar"]
     planet_date = request.form["planetdate"]
     planet_method = request.form["planetmethod"]
@@ -255,6 +256,12 @@ def ownpage():
     stars = db.query("SELECT * FROM star")
     return render_template("ownpage.html", stars=stars, planets=planets)
 
+@app.route("/planets")
+def planets():
+
+    planets = db.query("SELECT * FROM planet")
+    stars = db.query("SELECT * FROM star")
+    return render_template("planets.html", stars=stars, planets=planets)
 
 
 @app.route("/removeplanet/<planet_id>", methods = ["GET"])
