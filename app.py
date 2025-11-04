@@ -178,6 +178,12 @@ def create_star():
     star_name = request.form["starname"]
     star_content = request.form["starcontent"]
     user_id = session["user_id"]
+
+    sql = ("""SELECT name FROM star""")
+    result = db.query(sql)[0]
+    if star_name in result:
+        return "Tähden nimi on jo käytössä"
+
     planet.add_star(star_name, star_content, user_id)
     return redirect("/")
 
@@ -204,9 +210,9 @@ def create_planet():
 
     sql = ("""SELECT name FROM planet""")
     result = db.query(sql)[0]
-    print(result)
     if planet_name in result:
         return "Planeetan nimi on jo käytössä"
+        
 
     planet_content = "'" + planet_content + "'"
     sql = "INSERT INTO planet (name, content, discovery, user_id, method) VALUES (?,?,?,?,?)"
@@ -216,10 +222,12 @@ def create_planet():
     result = db.query(sql, [planet_name])[0]
     planet_id = int(result[0])
 
+    print(planet_types)
+
     for item in planet_types:
         sql = ("""SELECT id FROM type WHERE name = ?""")
         result = db.query(sql, [item])[0]
-        planet_type_id = int(result[0])
+        planet_type_id = int(result)
         sql = ("INSERT INTO planet_type (planet_id, type_id) VALUES (?,?)")
         db.execute(sql, [planet_id, planet_type_id])
 
