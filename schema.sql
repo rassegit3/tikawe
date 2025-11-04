@@ -49,3 +49,10 @@ INSERt into type (name) VALUES ("Kaasujättiläinen");
 INSERt into type (name) VALUES ("Maankaltainen planeetta");
 INSERt into type (name) VALUES ("Jääjättiläinen");
 INSERt into type (name) VALUES ("Kuuma Jupiter");
+
+INSERT INTO star ( name, content, user_id) VALUES ("Aurinko", "Lähin tähtemme", 0);
+
+INSERT INTO planet ( name, content, discovery, method, user_id) VALUES ("Maa", "Tutuin planeettamme",0,"Suora kuvaus", 0);
+
+INSERT INTO planet_star (planet_id, star_id) VALUES (1,1);
+INSERT INTO planet_method(planet_id, method_id) VALUES (1,1);
