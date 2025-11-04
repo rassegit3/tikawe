@@ -202,6 +202,12 @@ def create_planet():
     planet_method = request.form["planetmethod"]
     user_id = session["user_id"]
 
+    sql = ("""SELECT name FROM planet""")
+    result = db.query(sql)[0]
+    print(result)
+    if planet_name in result:
+        return "Planeetan nimi on jo käytössä"
+
     planet_content = "'" + planet_content + "'"
     sql = "INSERT INTO planet (name, content, discovery, user_id, method) VALUES (?,?,?,?,?)"
     db.execute(sql, [planet_name, planet_content, planet_date, user_id, planet_method])
@@ -209,8 +215,6 @@ def create_planet():
     sql = ("""SELECT id FROM planet WHERE name = ?""")
     result = db.query(sql, [planet_name])[0]
     planet_id = int(result[0])
-
-    print(planet_id)
 
     for item in planet_types:
         sql = ("""SELECT id FROM type WHERE name = ?""")
@@ -220,7 +224,7 @@ def create_planet():
         db.execute(sql, [planet_id, planet_type_id])
 
 
-    sql = ("""SELECT id FROM star WHERE name = ?""")
+    sql = ("""SELECT id FROM star WHERE name =  ? """)
     result = db.query(sql, [planet_star])[0]
     star_id = int(result[0])
     sql = ("INSERT INTO planet_star (planet_id, star_id) VALUES (?,?)")
