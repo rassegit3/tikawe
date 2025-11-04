@@ -29,3 +29,7 @@ $ sqlite3 database.db < schema.sql
 
 Käynnistä:
 $ flask run
+
+HUOMIOITA:
+
+Jos tähdellä on kaksi- tai useampiosainen nimi, käytä välilyönnin sijasta joko ala- tai väliviivaa osien välissä.
