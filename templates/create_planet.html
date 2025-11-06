@@ -42,18 +42,27 @@
       <br>
       <input type="text" name="planetcontent" />
     </p>
-    <p>
-
-      Planeetan tyypit: <br />
-      {% for type in types %}
 
 
 
-      <input type="checkbox" name="planettypes"> {{type[0]}} <br>
+
+    Planeetan tyypit:
+    <br>
+
+    {% for type in types %}
 
 
-      {% endfor %}
-    </p>
+    <label for="{{ type.name}}">{{ type.name}}</label>
+    <input type="checkbox" id="{{ type.name }}" name="planettypes" value="{{ type.name }}"><br>
+
+
+
+
+    {% endfor %}
+
+
+
+
     <p>
 
       <br />
