@@ -108,11 +108,25 @@ def getusername(user_id):
     return db.query(sql, [user_id])
 
 def findplanets_byname(query):
-    sql = "SELECT id from planet WHERE name LIKE ?"
-    print("query oli: " + query)
-    return db.query(sql, ["%" + query + "%"])
+    sql = "SELECT id from planet WHERE name = ?"
+    return db.query(sql, [query])
 
 def findstars_byname(query):
-    sql = "SELECT id from star WHERE name LIKE ?"
-    return db.query(sql, ["%" + query + "%"])
+    sql = "SELECT id from star WHERE name = ?"
+    return db.query(sql, [query])
 
+def search_planet(query):
+    sql = """SELECT id, name
+             FROM planet
+             WHERE name LIKE ?
+             ORDER BY id DESC"""
+    like = "%" + query + "%"
+    return db.query(sql, [like])
+
+def search_star(query):
+    sql = """SELECT id, name
+             FROM star
+             WHERE name LIKE ?
+             ORDER BY id DESC"""
+    like = "%" + query + "%"
+    return db.query(sql, [like])

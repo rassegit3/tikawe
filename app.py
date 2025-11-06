@@ -41,6 +41,8 @@ def show_planet(planet_id):
 def new():
     return render_template("new.html")
 
+"""
+
 @app.route("/search", methods = ["POST","GET"])
 def search():
     starname = request.args.get("starname")
@@ -56,6 +58,7 @@ def search():
 
         planets = planet.get_all_planets()
         stars = planet.get_stars()
+
 
         if planetname in planets:
             planet_id = planet.findplanets_byname(planetname)[0]
@@ -76,24 +79,47 @@ def search():
 
     else:
         return render_template("search.html", planetname = planetname, starname = starname)
+"""
 
 
-@app.route("/results/<starname>/<planetname>")
-def results(starname, planetname):
+@app.route("/search", methods = ["POST","GET"])
+def search():
+    starname = request.args.get("starname")
+    planetname = request.args.get("planetname")
 
-    if starname != "NoStar":
-        stars = planet.findstars_byname(starname)[0]
+    if request.method == "POST":
+
+
+        starname = request.form["starname"]
+        print(starname)
+
+        planetname = request.form["planetname"]
+
+        
+        if (planetname):
+            planets = planet.search_planet(planetname)
+        else:
+            planets = []
+        
+        if (starname):
+            stars = planet.search_star(starname)
+        else:
+            stars =  []
+
+
+        return render_template("results.html",planets=planets,stars=stars)
+
     else:
-        stars = []
-
-    if planetname != "NoPlanet":
-        planets = planet.findplanets_byname(planetname)[0]
-    else:
-        planets = []
+        return render_template("search.html", planetname = planetname, starname = starname)
 
 
+@app.route("/results")
+def results(stars, planets):
 
+    
     return render_template("results.html",planets=planets,stars=stars)
+
+    
 
 
 """
