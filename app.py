@@ -226,21 +226,33 @@ def modify():
 @app.route("/create_planet", methods=["GET", "POST"])
 def create_planet():
     planet_name = request.form["planetname"]
+
+
+    sql = ("""SELECT name FROM planet""")
+    result = db.query(sql)
+
+    print(result)
+    print(planet_name)
+
+
+    names = []
+    for name in result:
+        names.append(name[0])
+    if planet_name in names:
+        return "Planeetan nimi on jo käytössä"
+    print(names)
+    
     planet_content = request.form["planetcontent"]
     planet_types = request.form.getlist('planettypes')
 
-    print(planet_types)
+  
 
     planet_star = request.form["planetstar"]
     planet_date = request.form["planetdate"]
     planet_method = request.form["planetmethod"]
     user_id = session["user_id"]
 
-    sql = ("""SELECT name FROM planet""")
-    result = db.query(sql)[0]
-    if planet_name in result:
-        return "Planeetan nimi on jo käytössä"
-        
+
 
     planet_content = "'" + planet_content + "'"
     sql = "INSERT INTO planet (name, content, discovery, user_id, method) VALUES (?,?,?,?,?)"
