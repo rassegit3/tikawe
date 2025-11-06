@@ -43,7 +43,7 @@
   {% for item in stars %}
 
 
-  <li><a href="/star/{{ item }}">{{item}}</a></li>
+  <li><a href="/star/{{ item ['id'] }}">{{item["name"]}}</a></li>
   <br>
 
 
@@ -56,7 +56,7 @@
   {% for item in planets %}
 
 
-  <li><a href="/planet/{{ item }}">{{item}}</a></li>
+  <li><a href="/planet/{{ item ['id'] }}">{{item["name"]}}</a></li>
 
   <br>
 
