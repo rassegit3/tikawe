@@ -41,9 +41,15 @@
 
     <br>
 
+    {{planet.content}}
+
+    <br>
+
     Tähti:
 
     {{star.name}}
+
+
 
     <br>
     Löytötapa:
@@ -68,7 +74,7 @@
 
     {% if planet.user_id == session.user_id %}
     <p>
-      <a href="/remove/{{ planet.id }}">Poista</a>
+      <a href="/removeplanet/{{ planet.id }}">Poista</a>
     </p>
     {% endif %}
     <br>
