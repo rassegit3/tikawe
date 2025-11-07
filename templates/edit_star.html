@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/main.css">
+
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Muuta tähden tietoja</h1>
+    </div>
+
+    <div class="nav">
+        <nav>
+            <ul>
+                <li><a href="/">Etusivu</a></li>
+                <li><a href="/search">Haku</a></li>
+                <li><a href="/register">Luo tunnus</a></li>
+                {% if session.username %}
+                <li><a href="/modify">Muokkaa planeettoja</a></li>
+                <li><a href="/modify_star">Lisää tähtiä</a></li>
+
+
+                <li><a href="/ownpage">Omat sivut</a></li>
+                <li><a href="/planets">Kaikki kohteet</a></li>
+                <li><a href="/logout">Kirjaudu ulos</a></li>
+                {% else %}
+                <li><a href="/login">Kirjaudu sisään</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <form action="/edit_star/{{star_id}}" method="post">
+        <p>
+
+            Muuta kuvaus:
+            <br>
+            <input type="text" name="starcontent" />
+        </p>
+
+
+
+        <input type="submit" value="Lisää" />
+    </form>
+</body>
+
+</html>
