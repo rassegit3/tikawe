@@ -153,7 +153,7 @@ def settypes(planet_types,planet_id):
         db.execute(sql,[planet_id, res[0]])
 
 def setdate(planet_date, planet_id):
-    sql = "UPDATE planet SET content = ? WHERE id = ?"
+    sql = "UPDATE planet SET discovery = ? WHERE id = ?"
     db.execute(sql, [planet_date[0], planet_id])
 
 def setmethod(planet_method, planet_id):
