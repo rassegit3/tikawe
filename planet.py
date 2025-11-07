@@ -160,3 +160,9 @@ def setmethod(planet_method, planet_id):
     sql = "UPDATE planet SET method = ? WHERE id = ?"
     db.execute(sql, [planet_method[0], planet_id])
     
+
+
+def set_star_content(star_content, star_id):
+
+    sql = "UPDATE star SET content = ? WHERE id = ?"
+    db.execute(sql, [star_content[0], star_id])

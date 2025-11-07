@@ -255,6 +255,27 @@ def edit_page(planet_id):
    
 
 
+@app.route("/edit_star/<int:star_id>", methods =["GET","POST"])
+def edit_star(star_id):
+    
+    
+
+
+
+    star_content = request.form.getlist('starcontent')
+ 
+
+
+    if star_content:
+        planet.set_star_content(star_content, star_id)
+        return redirect("/")
+
+   
+
+    return render_template("edit_star.html", star_id = star_id)
+    
+   
+
 
 
 
