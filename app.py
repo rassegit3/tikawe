@@ -32,6 +32,7 @@ def show_planet(planet_id):
     """ method = planet.getmethodname(method_id)["name"] """
     method = method_id
     types = planet.get_types(planet_id)
+    
 
 
     return render_template("planet.html", planet=planet1, star =star, types=types, method = method)
@@ -221,6 +222,44 @@ def modify():
     methods = db.query("SELECT name FROM method")
 
     return render_template("/create_planet.html", types=types, stars=stars, methods=methods)
+
+
+@app.route("/edit_page/<int:planet_id>", methods =["GET","POST"])
+def edit_page(planet_id):
+    
+    
+    types = db.query("SELECT name FROM type")
+    methods = db.query("SELECT name FROM method")
+
+    
+    planet_types = request.form.getlist('planettypes')
+
+    planet_content = request.form.getlist('planetcontent')
+    planet_date = request.form.getlist('planetdate')
+    planet_method = request.form.getlist('planetmethod')
+
+    print(planet_id)
+    print(planet_types)
+
+    if (planet_types or planet_content or planet_date or planet_method):
+        planet.setcontent(planet_content, planet_id)
+        planet.settypes(planet_types, planet_id)
+        planet.setdate(planet_date, planet_id)
+        planet.setmethod(planet_method, planet_id)
+        return redirect("/")
+
+   
+
+    return render_template("edit_page.html", types=types, methods=methods, planet_id = planet_id)
+    
+   
+
+
+
+
+
+
+
 
 
 @app.route("/create_planet", methods=["GET", "POST"])
