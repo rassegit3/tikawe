@@ -15,7 +15,7 @@ def get_all_planets():
     return db.query(sql)[0]
 
 def get_star(star_id):
-    sql = """SELECT id, name FROM star WHERE id = ?"""
+    sql = """SELECT id, name, content FROM star WHERE id = ?"""
     return db.query(sql, [star_id])[0]
 
 def get_planets(star_id):
@@ -23,7 +23,7 @@ def get_planets(star_id):
     return db.query(sql, [star_id])
 
 def get_planet(planet_id):
-    sql = """SELECT id, name, discovery, method, user_id FROM planet WHERE id = ?"""
+    sql = """SELECT id, name,content, discovery, method, user_id FROM planet WHERE id = ?"""
     return db.query(sql, [planet_id])[0]
 
 def getstarforplanet_id(planet_id):
@@ -86,7 +86,7 @@ def remove_star(star_id):
     sql = "DELETE from star WHERE id = ?"
     db.execute(sql, [star_id])
 
-
+"""
 def add_comment(content, user_id, planet_id):
     sql = "INSERT INTO comment (content, user_id) VALUES (?,?)"
     db.execute(sql, [content, user_id])
@@ -102,6 +102,8 @@ def remove_comment(comment_id):
 def update_comment(comment_id, content):
     sql = "UPDATE comment SET content = ? WHERE id = ?"
     db.execute(sql, [content, comment_id])
+
+"""
 
 def getusername(user_id):
     sql = "SELECT username FROM users WHERE users.id = ?"
@@ -130,3 +132,31 @@ def search_star(query):
              ORDER BY id DESC"""
     like = "%" + query + "%"
     return db.query(sql, [like])
+
+
+def setcontent(planet_content, planet_id):
+
+    sql = "UPDATE planet SET content = ? WHERE id = ?"
+    db.execute(sql, [planet_content[0], planet_id])
+
+
+
+def settypes(planet_types,planet_id):
+    sql = "DELETE FROM planet_type WHERE planet_id = ?"
+    db.execute(sql, [planet_id])
+    planet_id = int(planet_id)
+    for type in planet_types:
+        sql = "SELECT id from type WHERE name = ?"
+        res = db.query(sql, [type])[0]
+        print(res[0])
+        sql = "INSERT INTO planet_type (planet_id, type_id) VALUES (?,?)"
+        db.execute(sql,[planet_id, res[0]])
+
+def setdate(planet_date, planet_id):
+    sql = "UPDATE planet SET content = ? WHERE id = ?"
+    db.execute(sql, [planet_date[0], planet_id])
+
+def setmethod(planet_method, planet_id):
+    sql = "UPDATE planet SET content = ? WHERE id = ?"
+    db.execute(sql, [planet_method[0], planet_id])
+    
