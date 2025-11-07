@@ -157,6 +157,6 @@ def setdate(planet_date, planet_id):
     db.execute(sql, [planet_date[0], planet_id])
 
 def setmethod(planet_method, planet_id):
-    sql = "UPDATE planet SET content = ? WHERE id = ?"
+    sql = "UPDATE planet SET method = ? WHERE id = ?"
     db.execute(sql, [planet_method[0], planet_id])
     
