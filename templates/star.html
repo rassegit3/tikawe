@@ -26,6 +26,7 @@
 
         <li><a href="/modify">Muokkaa planeettoja</a></li>
 
+
         <li><a href="/ownpage">Omat sivut</a></li>
         <li><a href="/planets">Kaikki kohteet</a></li>
         <li><a href="/logout">Kirjaudu ulos</a></li>
@@ -38,6 +39,9 @@
 
 
   <div class="content">
+
+    {{star.content}}
+    <br>
 
     Planeetat:
 
@@ -60,16 +64,18 @@
     <br>
 
 
-    {% if planet.user_id == session.user_id %}
-    <p>
-      <a href="/edit/{{ planet.id }}">Muokkaa</a>
-      <a href="/remove/{{ planet.id }}">Poista</a>
-    </p>
-    {% endif %}
-    <br>
+
 
     {% endfor %}
 
+
+    {% if star.user_id == session.user_id %}
+    <p>
+      <a href="/edit/{{ star.id }}">Muokkaa</a>
+      <a href="/removestar/{{ star.id }}">Poista</a>
+    </p>
+    {% endif %}
+    <br>
 
   </div>
 
